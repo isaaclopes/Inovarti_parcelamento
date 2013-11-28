@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ *
+ * @category   Inovarti
+ * @package    Inovarti_Parcelamento
+ * @author     Suporte <suporte@inovarti.com.br>
+ */
+-->
+<config>
+    <modules>
+        <Inovarti_Parcelamento>
+            <version>0.0.1</version>
+        </Inovarti_Parcelamento>
+    </modules>
+    <global>
+        <helpers>
+            <parcelamento>
+                <class>Inovarti_Parcelamento_Helper</class>
+            </parcelamento>
+        </helpers>
+    </global>
+    <default>
+        <payment>
+            <parcelamento>
+                <enabled>1</enabled>
+                <parcelamento>12</parcelamento>
+                <price_min>20</price_min>
+                <desconto_parcelamento>0</desconto_parcelamento>
+            </parcelamento>
+        </payment>
+    </default>
+</config>

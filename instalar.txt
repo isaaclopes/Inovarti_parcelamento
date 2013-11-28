@@ -1,0 +1,4 @@
+para chamar o block
+no views.phtml
+no list.phtml
+<?php echo $this->helper('parcelamento')->MostraParcelaProduct($_product); ?>
