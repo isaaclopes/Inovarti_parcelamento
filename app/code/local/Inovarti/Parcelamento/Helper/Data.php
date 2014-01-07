@@ -12,13 +12,17 @@ class Inovarti_Parcelamento_Helper_Data extends Mage_Core_Helper_Abstract {
         return Mage::getStoreConfig('payment/parcelamento/enabled');
     }
 
+    public function isEnableDescontoVista() {
+        return Mage::getStoreConfig('payment/parcelamento/desconto_parcelamento_enable');
+    }
+
     public function MostraParcelaProduct($_product) {
 
 
         if ($this->isEnable()) {
             $html = '';
-            $boleto=0;
-            
+            $boleto = 0;
+
             $_coreHelper = Mage::helper('core');
 
             $_price = $_product->getPrice();
@@ -47,13 +51,13 @@ class Inovarti_Parcelamento_Helper_Data extends Mage_Core_Helper_Abstract {
             }
 
             $final_valor_parcelas = $_coreHelper->currency($valor_parcelas, true, false);
-            
+
             if (($_desconto_parcelamento > 0) && ($valor > $valor_parcelas)) $boleto = $valor - ($valor * $_desconto_parcelamento / 100);
 
             $html .= '<div class="price-box parcelado">';
 
             if ($_finalPrice > $_price):
-                $html .= '(economia de ' . $_coreHelper->currency($_finalPrice - $_price, true, true) . ')';
+                //$html .= '(economia de ' . $_coreHelper->currency($_finalPrice - $_price, true, true) . ')';
             endif;
 
             if ($numero_de_parcelas > 1):
@@ -61,8 +65,8 @@ class Inovarti_Parcelamento_Helper_Data extends Mage_Core_Helper_Abstract {
             endif;
 
 
-            if ($boleto > 0) {
-                $html .= 'ou <strong>' . $_coreHelper->currency($boleto, true, true) . '</strong> à vista com desconto';
+            if ($boleto > 0 && $this->isEnable()) {
+                $html .= 'ou <strong>' . $_coreHelper->currency($boleto, true, true) . '</strong><br> à vista no boleto ou cartão';
             }
             $html .= '</div>';
         }
